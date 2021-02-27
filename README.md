@@ -1,2 +1,2 @@
-# Burning-Madness
+# Burnin'-Madness
 A NFM Version based off childhood game, Burnin' Rubber.
