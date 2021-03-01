@@ -1,7 +1,7 @@
 A NFM Version based off childhood game, Burnin' Rubber.
 
 
- <font size="30">CARS</font>
+# Cars
  
 <img src="https://i.imgur.com/RjGFIkw.png"/>
 
