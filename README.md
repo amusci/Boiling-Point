@@ -1,7 +1,8 @@
 A NFM Version based off childhood game, Burnin' Rubber.
 
-![][1]
-[1]: https://i.imgur.com/mhqEc4o.png
+<img src="https://i.imgur.com/mhqEc4o.png"/>
+
+!(image)[https://i.imgur.com/mhqEc4o.png]
 
 
 Join the discord for updates and leaks!
