@@ -1,6 +1,6 @@
 A NFM Version based off childhood game, Burnin' Rubber.
 
-<img src="https://imgur.com/a/Onoldei">
+<img src="(https://imgur.com/a/Onoldei)">
 
 
 Join the discord for updates and leaks!
