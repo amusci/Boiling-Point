@@ -23,7 +23,7 @@ class CheckPoints {
     public final int[] pos = {
             6, 6, 6, 6, 6, 6, 6
     };
-    /**
+    /**cum
      * connected to number of cars
      */
     public final int[] clear = new int[7];

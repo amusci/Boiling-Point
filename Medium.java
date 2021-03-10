@@ -445,8 +445,8 @@ public class Medium {
         trk = false;
         crs = false;
         noelec = 0;
-        cx = 335;
-        cy = 200;
+        cx = 450;
+        cy = 250;
         cz = 50;
         xz = 0;
         zy = 0;

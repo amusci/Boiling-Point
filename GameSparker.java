@@ -34,8 +34,8 @@ public class GameSparker extends Applet implements Runnable {
             "dhilo15", "slide10", "takeoff", "sramp22", "offbump", "offramp", "sofframp", "halfpipe", "spikes", "rail",
             "thewall", "checkpoint", "fixpoint", "offcheckpoint", "sideoff", "bsideoff", "uprise", "riseroad", "sroad",
             "soffroad"
-    };
 
+    };
     private static final String[] extraModels = {};
 
     /**
@@ -70,7 +70,7 @@ public class GameSparker extends Applet implements Runnable {
     private int notb;
     private int view;
 
-	/* variables for screen shake */
+    /* variables for screen shake */
 
     private int shaka = 0;
     private int apx = 0;
@@ -99,9 +99,9 @@ public class GameSparker extends Applet implements Runnable {
             if (i == 10 || i == 80 || i == 112 || i == 27)
                 u[0].enter = true;
             if (i == 77 || i == 109)
-                Control.mutem = !Control.mutem;
+                 u[0].mutem = ! u[0].mutem;
             if (i == 78 || i == 110)
-                Control.mutes = !Control.mutes;
+                u[0].mutes = ! u[0].mutes;
             if (i == 97 || i == 65)
                 u[0].arrace = !u[0].arrace;
             if (i == 118 || i == 86) {
@@ -228,23 +228,25 @@ public class GameSparker extends Applet implements Runnable {
         }
     }
 
-    private void cropit(final Graphics2D graphics2d, final int i, final int i_98_) {
+    private void cropit(Graphics2D graphics2d, int i, int i_98_) {
         if (i != 0 || i_98_ != 0) {
             graphics2d.setComposite(AlphaComposite.getInstance(3, 1.0F));
             graphics2d.setColor(new Color(0, 0, 0));
         }
+
         if (i != 0) {
             if (i < 0) {
-                graphics2d.fillRect(apx + i, apy - (int) (25.0F), Math.abs(i), (int) (400.0F));
+                graphics2d.fillRect(this.apx + i, this.apy - 25, Math.abs(i), 500);
             } else {
-                graphics2d.fillRect(apx + (int) (670.0F), apy - (int) (25.0F), i, (int) (400.0F));
+                graphics2d.fillRect(this.apx + 900, this.apy - 25, i, 500);
             }
         }
+
         if (i_98_ != 0) {
             if (i_98_ < 0) {
-                graphics2d.fillRect(apx - (int) (25.0F), apy + i_98_, (int) (720.0F), Math.abs(i_98_));
+                graphics2d.fillRect(this.apx - 25, this.apy + i_98_, 950, Math.abs(i_98_));
             } else {
-                graphics2d.fillRect(apx - (int) (25.0F), apy + (int) (450.0F), (int) (720.0F), i_98_);
+                graphics2d.fillRect(this.apx - 25, this.apy + 550, 950, i_98_);
             }
         }
 
@@ -252,22 +254,20 @@ public class GameSparker extends Applet implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        final Graphics2D graphics2d = (Graphics2D) g;
-
+        Graphics2D graphics2d = (Graphics2D)g;
         int i = 0;
         int i_97_ = 0;
-        if (shaka > 10) {
-            i = (int) ((shaka * 2 * Math.random() - shaka));
-            i_97_ = (int) ((shaka * 2 * Math.random() - shaka));
-            shaka--;
+        if (this.shaka > 10) {
+            i = (int)((double)(this.shaka * 2) * Math.random() - (double)this.shaka);
+            i_97_ = (int)((double)(this.shaka * 2) * Math.random() - (double)this.shaka);
+            this.shaka -= 5;
         }
-        apx = (int) (getWidth() / 2 - 335.0F);
-        apy = (int) (getHeight() / 2 - 200.0F);
 
+        this.apx = (int)((float)(this.getWidth() / 2) - 450.0F);
+        this.apy = (int)((float)(this.getHeight() / 2) - 250.0F);
         graphics2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        graphics2d.drawImage(offImage, apx + i, apy + i_97_, this);
-
-        cropit(graphics2d, i, i_97_);
+        graphics2d.drawImage(this.offImage, this.apx + i, this.apy + i_97_, this);
+        this.cropit(graphics2d, i, i_97_);
     }
 
     public GameSparker() {
@@ -363,8 +363,8 @@ public class GameSparker extends Applet implements Runnable {
                 xtgraphics.dnload++;
             }
             /*
-			 * be sure to add your added arrays here			
-			 */
+             * be sure to add your added arrays here            
+             */
             HLogger.info("Contos loaded: " + (carModels.length + trackModels.length + extraModels.length));
             zipinputstream.close();
         } catch (IOException e) {
@@ -778,11 +778,11 @@ public class GameSparker extends Applet implements Runnable {
     @Override
     public void run() {
         rd.setColor(new Color(0, 0, 0));
-        rd.fillRect(0, 0, 670, 400);
+        rd.fillRect(0, 0,900, 500);
         repaint();
-		/*
-		 * start an example timer
-		 */
+        /*
+         * start an example timer
+         */
         Utility.startTimer();
         Trackers trackers = new Trackers();
         Medium medium = new Medium();
@@ -809,18 +809,18 @@ public class GameSparker extends Applet implements Runnable {
         l = 0;
         float f = 35F;
         int i1 = 80;
-		/*
-		 * stop an example timer
-		 */
+        /*
+         * stop an example timer
+         */
         Utility.stopTimer();
         /**
          * this bit in here reads cookies and set values
          */
         l = readcookie("unlocked");
         if (l >= 1 && l <= 17) {
-			/*
-			 * Note: that is an L
-			 */
+            /*
+             * Note: that is an L
+             */
             xtgraphics.unlocked = l;
             if (xtgraphics.unlocked != 17)
                 checkpoints.stage = xtgraphics.unlocked;
@@ -885,7 +885,7 @@ public class GameSparker extends Applet implements Runnable {
             if (xtgraphics.fase == -9)
                 if (i2 < 2) {
                     rd.setColor(new Color(0, 0, 0));
-                    rd.fillRect(0, 0, 670, 400);
+                    rd.fillRect(0, 0, 900, 500);
                     i2++;
                 } else {
                     xtgraphics.inishcarselect();
@@ -1079,8 +1079,13 @@ public class GameSparker extends Applet implements Runnable {
                 } else {
                     u[0].enter = false;
                     u[0].handb = false;
-                    if (xtgraphics.loadedt[checkpoints.stage - 1])
-                        xtgraphics.stracks[checkpoints.stage - 1].play();
+                    if(xtgraphics.loadedt[checkpoints.stage - 1]) {
+                        if (xtgraphics.isMidi[checkpoints.stage - 1]) {
+                            xtgraphics.mtracks[checkpoints.stage - 1].play();
+                        } else {
+                            xtgraphics.stracks[checkpoints.stage - 1].play();
+                        }
+                    }
                     setCursor(new Cursor(0));
                     xtgraphics.fase = 6;
                 }
@@ -1164,7 +1169,7 @@ public class GameSparker extends Applet implements Runnable {
                         Medium.zy = 40;
                         Medium.vxz = 70;
                         rd.setColor(new Color(255, 255, 255));
-                        rd.fillRect(0, 0, 670, 400);
+                        rd.fillRect(0, 0, 900, 500);
                     }
                     if (xtgraphics.starcnt != 0)
                         xtgraphics.starcnt--;
@@ -1207,7 +1212,7 @@ public class GameSparker extends Applet implements Runnable {
                         Medium.follow(aconto1[0], amadness[0].cxz, 0);
                         xtgraphics.stat(amadness, checkpoints, u[0], aconto1, true);
                         rd.setColor(new Color(255, 255, 255));
-                        rd.fillRect(0, 0, 670, 400);
+                        rd.fillRect(0, 0,900, 500);
                     }
                 }
             }
@@ -1381,13 +1386,13 @@ public class GameSparker extends Applet implements Runnable {
                     xtgraphics.levelhigh(record.wasted, record.whenwasted, record.closefinish, k1, checkpoints.stage);
                     if (k1 == 0 || k1 == 1 || k1 == 2) {
                         rd.setColor(new Color(0, 0, 0));
-                        rd.fillRect(0, 0, 670, 400);
+                        rd.fillRect(0, 0, 900, 500);
                     }
                     if (record.wasted != 0) {
                         if (record.closefinish == 0) {
                             if (i2 == 9 || i2 == 11) {
                                 rd.setColor(new Color(255, 255, 255));
-                                rd.fillRect(0, 0, 670, 400);
+                                rd.fillRect(0, 0,900, 500);
                             }
                             if (i2 == 0)
                                 Medium.around(aconto1[0], false);
@@ -1464,16 +1469,16 @@ public class GameSparker extends Applet implements Runnable {
                     } else {
                         if (k2 == 67 && (i2 == 3 || i2 == 31 || i2 == 66)) {
                             rd.setColor(new Color(255, 255, 255));
-                            rd.fillRect(0, 0, 670, 400);
+                            rd.fillRect(0, 0, 900, 500);
                         }
                         if (k2 == 69 && (i2 == 3 || i2 == 5 || i2 == 31 || i2 == 33 || i2 == 66 || i2 == 68)) {
                             rd.setColor(new Color(255, 255, 255));
-                            rd.fillRect(0, 0, 670, 400);
+                            rd.fillRect(0, 0, 900, 500);
                         }
                         if (k2 == 30 && i2 >= 1 && i2 < 30)
                             if (i2 % (int) (2.0F + Medium.random() * 3F) == 0 && !flag2) {
                                 rd.setColor(new Color(255, 255, 255));
-                                rd.fillRect(0, 0, 670, 400);
+                                rd.fillRect(0, 0, 900, 500);
                                 flag2 = true;
                             } else {
                                 flag2 = false;
@@ -1622,12 +1627,12 @@ public class GameSparker extends Applet implements Runnable {
 
     @Override
     public void init() {
-		/*
+        /*
          * load some fonts
          */
         new FontHandler();
 
-        offImage = createImage(670, 400);
+        offImage = createImage(900, 500);
         if (offImage != null) {
             sg = offImage.getGraphics();
             rd = ((Graphics2D) sg);
