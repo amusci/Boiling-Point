@@ -453,8 +453,8 @@ public class Medium {
         x = 0;
         y = 0;
         z = 0;
-        w = 670;
-        h = 400;
+        w = 900;
+        h = 500;
         nsp = 0;
         spx = new int[7];
         spz = new int[7];

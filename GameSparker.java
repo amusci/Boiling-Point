@@ -228,30 +228,26 @@ public class GameSparker extends Applet implements Runnable {
         }
     }
 
-    private void cropit(Graphics2D graphics2d, int i, int i_98_) {
-        if (i != 0 || i_98_ != 0) {
-            graphics2d.setComposite(AlphaComposite.getInstance(3, 1.0F));
-            graphics2d.setColor(new Color(0, 0, 0));
-        }
-
-        if (i != 0) {
-            if (i < 0) {
-                graphics2d.fillRect(this.apx + i, this.apy - 25, Math.abs(i), 500);
-            } else {
-                graphics2d.fillRect(this.apx + 900, this.apy - 25, i, 500);
-            }
-        }
-
-        if (i_98_ != 0) {
-            if (i_98_ < 0) {
-                graphics2d.fillRect(this.apx - 25, this.apy + i_98_, 950, Math.abs(i_98_));
-            } else {
-                graphics2d.fillRect(this.apx - 25, this.apy + 550, 950, i_98_);
-            }
-        }
-
-    }
-
+     private void cropit(final Graphics2D graphics2d, final int i, final int i_98_) {
+		if (i != 0 || i_98_ != 0) {
+			graphics2d.setComposite(AlphaComposite.getInstance(3, 1.0F));
+			graphics2d.setColor(new Color(0, 0, 0));
+		}
+		if (i != 0) {
+			if (i < 0) {
+				graphics2d.fillRect(apx + i, apy - (int) (25.0F), Math.abs(i), (int) (500.0F));
+			} else {
+				graphics2d.fillRect(apx + (int) (900.0F), apy - (int) (25.0F), i, (int) (500.0F));
+			}
+		}
+		if (i_98_ != 0) {
+			if (i_98_ < 0) {
+				graphics2d.fillRect(apx - (int) (25.0F), apy + i_98_, (int) (950.0F), Math.abs(i_98_));
+			} else {
+				graphics2d.fillRect(apx - (int) (25.0F), apy + (int) (550.0F), (int) (950.0F), i_98_);
+			}
+		}
+	}
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D)g;
@@ -271,7 +267,7 @@ public class GameSparker extends Applet implements Runnable {
     }
 
     public GameSparker() {
-        u = new Control[7];
+        u = new Control[51];
         mouses = 0;
         xm = 0;
         ym = 0;
@@ -444,7 +440,7 @@ public class GameSparker extends Applet implements Runnable {
     private void loadstage(ContO aconto[], ContO aconto1[], Medium medium, Trackers trackers, CheckPoints checkpoints,
                            xtGraphics xtgraphics, Madness amadness[], Record record) {
         trackers.nt = 0;
-        nob = 7;
+        nob = xtgraphics.numberOfPlayers;
         notb = 0;
         checkpoints.n = 0;
         checkpoints.nsp = 0;
@@ -743,14 +739,24 @@ public class GameSparker extends Applet implements Runnable {
         int j1 = 0;
         do
             u[j1].reset(checkpoints, xtgraphics.sc[j1]);
-        while (++j1 < 7);
+        while (++j1 < xtgraphics.numberOfPlayers);
         xtgraphics.resetstat(checkpoints.stage);
         j1 = 0;
         do {
-            aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], xtgraphics.xstart[j1],
-                    250 - aconto1[xtgraphics.sc[j1]].grat, xtgraphics.zstart[j1], 0);
+              if(j1 % 3 == 0)
+           {
+                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 0, 250 - aconto1[xtgraphics.sc[j1]].grat, -760 + ((j1 / 3) * 760), 0);
+            }
+              if(j1 % 3 == 1)
+           {
+                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], -350, 250 - aconto1[xtgraphics.sc[j1]].grat, -380 + ((int)(j1 / 3) * 760), 0);
+            }
+              if(j1 % 3 == 2)
+           {
+                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 350, 250 - aconto1[xtgraphics.sc[j1]].grat, -380 + ((int)(j1 / 3) * 760), 0);
+           }
             amadness[j1].reseto(xtgraphics.sc[j1], aconto[j1], checkpoints);
-        } while (++j1 < 7);
+        } while (++j1 < xtgraphics.numberOfPlayers);
         record.reset(aconto);
         System.gc();
     }
@@ -800,12 +806,12 @@ public class GameSparker extends Applet implements Runnable {
         ContO aconto[] = new ContO[carModels.length + trackModels.length + extraModels.length]; // be sure all your arrays get in here
         loadbase(aconto, medium, trackers, xtgraphics);
         ContO aconto1[] = new ContO[3000];
-        Madness amadness[] = new Madness[7];
+        Madness amadness[] = new Madness[51];
         int l = 0;
         do {
             amadness[l] = new Madness(medium, record, xtgraphics, l);
             u[l] = new Control(medium);
-        } while (++l < 7);
+        } while (++l < 51); //dont touch this
         l = 0;
         float f = 35F;
         int i1 = 80;
@@ -959,7 +965,7 @@ public class GameSparker extends Applet implements Runnable {
             if (xtgraphics.fase == 205) {
                 savecookie("usercar", "" + xtgraphics.sc[0]);
 
-                for (int x = 0; x < 7; x++) {
+                for (int x = 0; x < xtgraphics.numberOfPlayers; x++) {
                     amadness[x].stat = new Stat(xtgraphics.sc[x]);
                 }
                 xtgraphics.fase = 5;
@@ -983,6 +989,9 @@ public class GameSparker extends Applet implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
+            if(xtgraphics.fase == 58) {
+                xtgraphics.carspergame();
+            }
             if (xtgraphics.fase == 2) {
                 xtgraphics.loadingstage(checkpoints.stage);
                 loadstage(aconto1, aconto, medium, trackers, checkpoints, xtgraphics, amadness, record);
@@ -994,7 +1003,7 @@ public class GameSparker extends Applet implements Runnable {
                 Medium.aroundTrack(checkpoints);
                 int i3 = 0;
                 int ai[] = new int[200];
-                for (int k5 = 7; k5 < notb; k5++)
+                for (int k5 = xtgraphics.numberOfPlayers; k5 < notb; k5++)
                     if (aconto1[k5].dist != 0) {
                         ai[i3] = k5;
                         i3++;
@@ -1104,7 +1113,7 @@ public class GameSparker extends Applet implements Runnable {
                         aconto1[k3].zy = l8;
                         amadness[k3].newcar = false;
                     }
-                } while (++k3 < 7);
+                } while (++k3 < xtgraphics.numberOfPlayers);
                 Medium.d(rd);
                 k3 = 0;
                 int ai2[] = new int[200];
@@ -1147,22 +1156,22 @@ public class GameSparker extends Applet implements Runnable {
                             if (j14 != l12) {
                                 amadness[l12].colide(aconto1[l12], amadness[j14], aconto1[j14]);
                             }
-                        } while (++j14 < 7);
-                    } while (++l12 < 7);
+                        } while (++j14 < xtgraphics.numberOfPlayers);
+                    } while (++l12 < xtgraphics.numberOfPlayers);
                     l12 = 0;
                     do
                         amadness[l12].drive(u[l12], aconto1[l12], trackers, checkpoints);
-                    while (++l12 < 7);
+                    while (++l12 < xtgraphics.numberOfPlayers);
                     l12 = 0;
                     do
                         record.rec(aconto1[l12], l12, amadness[l12].squash, amadness[l12].lastcolido,
                                 amadness[l12].cntdest);
-                    while (++l12 < 7);
-                    checkpoints.checkstat(amadness, aconto1, record);
+                    while (++l12 < xtgraphics.numberOfPlayers);
+                    checkpoints.checkstat(amadness, aconto1, record, xtgraphics.numberOfPlayers);
                     l12 = 1;
                     do
-                        u[l12].preform(amadness[l12], aconto1[l12], checkpoints, trackers);
-                    while (++l12 < 7);
+                        u[l12].preform(amadness[l12], aconto1[l12], checkpoints, trackers, xtgraphics.numberOfPlayers);
+                    while (++l12 < xtgraphics.numberOfPlayers);
                 } else {
                     if (xtgraphics.starcnt == 130) {
                         Medium.adv = 1900;
@@ -1208,7 +1217,7 @@ public class GameSparker extends Applet implements Runnable {
                         Medium.vert = false;
                         Medium.adv = 900;
                         Medium.vxz = 180;
-                        checkpoints.checkstat(amadness, aconto1, record);
+                        checkpoints.checkstat(amadness, aconto1, record, xtgraphics.numberOfPlayers);
                         Medium.follow(aconto1[0], amadness[0].cxz, 0);
                         xtgraphics.stat(amadness, checkpoints, u[0], aconto1, true);
                         rd.setColor(new Color(255, 255, 255));
@@ -1222,7 +1231,7 @@ public class GameSparker extends Applet implements Runnable {
                     do {
                         record.ocar[i4] = new ContO(aconto1[i4], 0, 0, 0, 0);
                         aconto1[i4] = new ContO(record.car[0][i4], 0, 0, 0, 0);
-                    } while (++i4 < 7);
+                    } while (++i4 < xtgraphics.numberOfPlayers);
                 }
                 Medium.d(rd);
                 int j4 = 0;
@@ -1280,7 +1289,7 @@ public class GameSparker extends Applet implements Runnable {
                     if (k1 == 299)
                         aconto1[l9] = new ContO(record.ocar[l9], 0, 0, 0, 0);
                     record.play(aconto1[l9], amadness[l9], l9, k1);
-                } while (++l9 < 7);
+                } while (++l9 < xtgraphics.numberOfPlayers);
                 if (++k1 == 300) {
                     k1 = 0;
                     xtgraphics.fase = -6;
@@ -1324,7 +1333,7 @@ public class GameSparker extends Applet implements Runnable {
                     int k4 = 0;
                     do
                         aconto1[k4] = new ContO(record.starcar[k4], 0, 0, 0, 0);
-                    while (++k4 < 7);
+                    while (++k4 < xtgraphics.numberOfPlayers);
                 }
                 Medium.d(rd);
                 int i5 = 0;
@@ -1374,7 +1383,7 @@ public class GameSparker extends Applet implements Runnable {
                         record.cntdest[l10] = 0;
                     }
                     record.playh(aconto1[l10], amadness[l10], l10, k1);
-                } while (++l10 < 7);
+                } while (++l10 < xtgraphics.numberOfPlayers);
                 if (j2 == 2 && k1 == 299)
                     u[0].enter = true;
                 if (u[0].enter || u[0].handb) {
@@ -1719,7 +1728,7 @@ public class GameSparker extends Applet implements Runnable {
     private void catchlink(int i) {
         if (!lostfcs) {
             if (i == 0)
-                if (xm > 0 && xm < 670 && ym > 110 && ym < 169 || xm > 210 && xm < 460 && ym > 240 && ym < 259) {
+                if (xm > 0 && xm < 900 && ym > 110 && ym < 169 || xm > 210 && xm < 460 && ym > 240 && ym < 259) {
                     setCursor(new Cursor(12));
                     if (mouses == 2)
                         openurl("http://www.radicalplay.com/");
@@ -1727,7 +1736,7 @@ public class GameSparker extends Applet implements Runnable {
                     setCursor(new Cursor(0));
                 }
             if (i == 1)
-                if (xm > 0 && xm < 670 && ym > 205 && ym < 267) {
+                if (xm > 0 && xm < 900 && ym > 205 && ym < 267) {
                     setCursor(new Cursor(12));
                     if (mouses == 2)
                         openurl("http://www.radicalplay.com/");
