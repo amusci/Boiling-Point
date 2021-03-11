@@ -430,7 +430,7 @@ public class Medium {
     }
 
     public Medium() {
-        focus_point = 400;
+        focus_point = 500;
         ground = 250;
         skyline = -300;
         fogd = 7;
@@ -445,16 +445,16 @@ public class Medium {
         trk = false;
         crs = false;
         noelec = 0;
-        cx = 450;
-        cy = 250;
+        cx = GameFacts.screenWidth / 2;
+        cy = GameFacts.screenHeight / 2;
         cz = 50;
         xz = 0;
         zy = 0;
         x = 0;
         y = 0;
         z = 0;
-        w = 900;
-        h = 500;
+        w = GameFacts.screenWidth;
+        h = GameFacts.screenHeight;
         nsp = 0;
         spx = new int[7];
         spz = new int[7];
