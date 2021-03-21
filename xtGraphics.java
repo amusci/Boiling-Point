@@ -210,7 +210,7 @@ class xtGraphics extends Panel implements Runnable {
     private int laps;
     private final int[] dested;
     private final String[] names = {
-            "Tornado Shark", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
+            "Test1", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
             "Kool Kat", "Drifter X", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
             "Radical One", "DR Monstaa"
     };
