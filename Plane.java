@@ -213,7 +213,7 @@ public class Plane {
         deltaf = deltaf / 3F;
     }
 
-    public void d(Graphics2D rd, int i, int j, int k, int l, int i1, int j1, int k1, int l1, boolean flag, int i2) {
+    public void d(Graphics2D rd, int i, int j, int k, int l, int i1, int j1, int k1, int l1, boolean flag, int i2,boolean blackout) {
         if (master != 0) {
             if (av > 1500) {
                 n = 8;
@@ -941,7 +941,11 @@ public class Plane {
                     }
                 } while (++l15 < 8);
             }
-            rd.setColor(new Color(l11, j13, k14));
+            if (blackout){
+                rd.setColor(new Color(0,0,0));
+            } else {
+                rd.setColor(new Color(l11, j13, k14));
+            }
             rd.fillPolygon(ai14, ai15, n);
             if (Medium.trk && gr == -10) {
                 flag = false;
