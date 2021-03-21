@@ -65,6 +65,10 @@ public class ContO {
     private int[] dam;
     private boolean[] notwall;
 
+    //new
+
+    public boolean blackout = false;
+
     private void pdust(int i, Graphics2D rd, int j) {
         if (j * dov[i] > 0) {
             int k;
@@ -264,7 +268,7 @@ public class ContO {
                         byte0 = 1;
                     }
                     if (line.startsWith("noOutline")) {
-                        flag4 = true;
+                        p[i1].solo = true;
                     }
                     if (line.startsWith("p")) {
                         ai[i] = (int) ((Utility.getint("p", line, 0) * f * f1) * nfmm_scale[0]);
@@ -590,7 +594,7 @@ public class ContO {
                 }
 
                 for (int l3 = 0; l3 < npl; l3++) {
-                    p[ai1[l3]].d(rd, x - Medium.x, y - Medium.y, z - Medium.z, xz, xy, zy, wxz, wzy, noline, l);
+                    p[ai1[l3]].d(rd, x - Medium.x, y - Medium.y, z - Medium.z, xz, xy, zy, wxz, wzy, noline, l, blackout);
                     if (p[ai1[l3]].master != 0 && stg[p[ai1[l3]].master - 1] != 0) {
                         pdust(p[ai1[l3]].master - 1, rd, 1);
                     }

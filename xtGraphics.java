@@ -210,9 +210,9 @@ class xtGraphics extends Panel implements Runnable {
     private int laps;
     private final int[] dested;
     private final String[] names = {
-            "Tornado Shark", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
-            "Kool Kat", "Drifter X", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
-            "Radical One", "DR Monstaa"
+            "Mantis", "Bullet", "ADP", "Rebel", "Kodai", "Hound", "DX Turbo",
+            "Inferno", "BT One", "Macari", "Panini", "Mammoth", "Vice", "GT Blaze",
+            "Panther", "DR Monstaa"
     };
     private int dmcnt;
     private boolean dmflk;
@@ -1417,7 +1417,12 @@ class xtGraphics extends Panel implements Runnable {
                         }
                     }
                 } else if (loadedt[i - 1]) {
-                    stracks[i - 1].resume();System.out.println("We've reached an unmute check...");
+                    try {
+                        stracks[i - 1].resume();
+                        System.out.println("We've reached an unmute check...");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if(isMidi[i - 1]) {
                         System.out.println("Unmute check > play midi...");
                         mtracks[i - 1].resume();
@@ -2420,7 +2425,7 @@ stracks[i - 1].resume();
                        for (int array_two = 0; array_two < num_cars; array_two++) {
                           if (checkpoints.pos[array_two] == array_one && checkpoints.dested[array_two] == 0 && !flag_status) {
                          int y_value = 30; // use to move status up or down
-                         int x_value = 0;  // use to move status left or right
+                         int x_value = 100;  // use to move status left or right
 
                          rd.setColor(new Color(0, 0, 100));
                          if (array_one == 0)
@@ -4503,7 +4508,10 @@ stracks[i - 1].resume();
         Medium.xz = 0;
         Medium.zy = 10;
         Medium.ground = 470;
-        aconto[sc[0]].d(rd);
+        if ((sc[0] - 7) * 2 >= unlocked) {
+            aconto[sc[0]].blackout = true;
+        }
+        aconto[sc[0]].d(rd);//comment this out if u want invisible car select
         if (flipo == 0) {
             rd.setFont(new Font("SansSerif", 1, 13));
             FontHandler.fMetrics = rd.getFontMetrics();
