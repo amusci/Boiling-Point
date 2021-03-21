@@ -19,7 +19,7 @@ class xtGraphics extends Panel implements Runnable {
      *
      */
     private static final long serialVersionUID = -6463312620664057856L;
-    
+
     SoundManager sm = new SoundManager();
     /**
      * starting colors for the special screen in the credits
@@ -49,7 +49,7 @@ class xtGraphics extends Panel implements Runnable {
     public int looped;
     public final int[] sc;
     public boolean setnumber;
-    
+
 
     /*
      * hm... it would be interesting if there was a ystart...
@@ -642,7 +642,7 @@ class xtGraphics extends Panel implements Runnable {
 
     public void loadingstage(int i) {
         /*
-         * 
+         *
          * looks better without idc fight me
         trackbg(true);
         rd.setColor(new Color(177, 177, 177));
@@ -658,8 +658,8 @@ class xtGraphics extends Panel implements Runnable {
         FontHandler.fMetrics = rd.getFontMetrics();
         drawcs(511, "You can also use Keyboard Arrows and Enter to navigate.", 82, 90, 0, 3);
         app.repaint();*/
-        
-        
+
+
         if (lastload != -22) {
             stages.loadMod(135, 7800, 125, sunny, macn);
             lastload = -22;
@@ -732,7 +732,7 @@ class xtGraphics extends Panel implements Runnable {
         if (flipo == 3 || flipo == 5) {//2-3 page
             if (flipo == 3) {
                 rd.drawString("Hello!  This will be changed eventually.", 312, 42);
-                
+
                 //
                 //rd.drawImage(nfm, 519, 30, null);
                 rd.drawString("In this game there are two ways to complete a stage.", 312, 82);
@@ -762,7 +762,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Brake/Reverse", 555, 372);
             rd.drawString("Turn left", 504, 350);
             rd.drawString("Turn right", 640, 350);
-           
+
         }
         if (flipo == 7 || flipo == 9) { // 4-5 page
             if (flipo == 7) {
@@ -771,7 +771,7 @@ class xtGraphics extends Panel implements Runnable {
                 rd.drawString("=> More 'Power' makes your car become faster and stronger!", 312, 82);
                 rd.drawString("To power up your car (and keep it powered up) you will need to", 312, 102);
                 rd.drawString("perform stunts!", 312, 122);
-                
+
             } else {
                 rd.drawString("The better the stunt the more power you get!", 312, 42);
                 rd.setColor(new Color(100, 100, 100));
@@ -779,10 +779,10 @@ class xtGraphics extends Panel implements Runnable {
                 rd.drawString("when racing. Backward looping pushes your car upwards giving it", 312, 82);
                 rd.drawString("more hang time in the air making it easier to control its landing.", 312, 102);
                 rd.drawString("Left and right rolls shift your car in the air left and right slightly.", 312, 122);
-                
+
             }
             rd.drawImage(stunts, 155, 150, null);
-            
+
             rd.setFont(new Font("SansSerif", 1, 13));
             rd.drawString("To perform stunts. When your car is in the AIR;", 175, 285);
             rd.drawString("Press combo Spacebar + Arrow Keys :", 175, 305);
@@ -793,9 +793,9 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Forward Loop", 565, 294);
             rd.drawString("Backward Loop", 555, 372);
             rd.drawString("Left Roll", 504, 350);
-            rd.drawString("Right Roll", 640, 350); 
-           
-            
+            rd.drawString("Right Roll", 640, 350);
+
+
         }
         if (flipo == 11 || flipo == 13) { //6-7 page
             if (flipo == 11) {
@@ -844,7 +844,7 @@ class xtGraphics extends Panel implements Runnable {
         }
         if (flipo == 1) {//first papge
             rd.setFont(new Font("SansSerif", 1, 13));
-            
+
             FontHandler.fMetrics = rd.getFontMetrics();
             drawcs(20, "Main Game Controls", 0, 0, 0, 3);
             rd.drawString("Drive your car using the Arrow Keys:", 175, 55);
@@ -857,7 +857,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Brake/Reverse", 555, 132);
             rd.drawString("Turn left", 504, 110);
             rd.drawString("Turn right", 640, 110);
-            
+
             drawcs(150, "--------------------------------------------------------------------------------"
                     + "--------------------------------------------------------------------", 0, 0, 0, 3);
             rd.setFont(new Font("SansSerif", 1, 13));
@@ -865,7 +865,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("To perform stunts:", 175, 175);
             rd.drawString("In the AIR press combo Spacebar + Arrow Keys :", 175, 195);
             rd.drawImage(space, 235, 220, null);
-            
+
             rd.drawImage(arrows, 541, 188, null);
             rd.setFont(new Font("SansSerif", 1, 11));
             FontHandler.fMetrics = rd.getFontMetrics();
@@ -874,7 +874,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Backward Loop", 540, 262);
             rd.drawString("Left Roll", 493, 240);
             rd.drawString("Right Roll", 626, 240);
-            
+
             rd.drawImage(stunts, 175, 290, null);
         }
         if (flipo >= 1 && flipo <= 13) {
@@ -1666,7 +1666,7 @@ class xtGraphics extends Panel implements Runnable {
             runner = new Thread(this);
             runner.start();
         }
-        
+
         if(!loadedt[i - 1])
         {
             System.out.println("Loading music...");
@@ -1674,7 +1674,7 @@ class xtGraphics extends Panel implements Runnable {
             File f2 = new File("music/stage" + i + ".mp3");
             File f3 = new File("music/stage" + i + ".ogg");
              //this also serves as a check so radicalmidi doesn't throw an error
-            
+
            if (f.exists())
             {
                 System.out.println("Initializing midi...");
@@ -1710,10 +1710,10 @@ class xtGraphics extends Panel implements Runnable {
                     loadedt[i - 1] = true;
                 }
             }
- 
+
              if (!isMidi[i - 1]) {
              System.out.println("Loading mod...");
-        
+
                if(i == 1)
                {
                stracks[0].loadMod(130, 8000, 125, sunny, macn);
@@ -2179,7 +2179,7 @@ stracks[i - 1].resume();
                 if (loadedt[i - 1]) {
                    if(isMidi[i - 1]) {
                        mtracks[i - 1].setPaused(true);
-    
+
                     } else {
                         stracks[i - 1].stop();
                   }
@@ -2418,7 +2418,7 @@ stracks[i - 1].resume();
                 if (!holdit && fase != -6 && starcnt == 0) {
                         rd.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                         arrow(madness[0].point, madness[0].missedcp, checkpoints, conto, arrace);
-                    
+
                         int num_cars = 7;
                   for (int array_one = 0; array_one < num_cars; array_one++) {
                          boolean flag_status = false;
@@ -2539,7 +2539,7 @@ stracks[i - 1].resume();
                         }
                     }
                 }
-    
+
                 if (Medium.flex != 2 || Medium.flex == 2) {
                    rd.drawImage(dmg, 470, 7, null);
                    rd.drawImage(pwr, 470, 27, null);
@@ -4099,7 +4099,7 @@ stracks[i - 1].resume();
 
         cars = new RadicalMod("music/cars.radq", app);
         dnload += 27;
-        
+
         /*
         int j = 0;
         do {
@@ -4113,8 +4113,8 @@ stracks[i - 1].resume();
         */
         stages = new RadicalMod("music/stages.radq", app);
         dnload += 91;
-        
-        
+
+
         /*j = 0;
         do {
             air[j] = getSound("sounds/" + s + "air" + j + ".au");
@@ -4238,8 +4238,8 @@ stracks[i - 1].resume();
 
                 this.dnload += 5;
             }
-            
-        /*    
+
+        /*
         } while (++j < 3);
         tires = getSound("sounds/" + s + "tires." + s1);
         if (i == 2) {
@@ -4300,15 +4300,15 @@ stracks[i - 1].resume();
             dnload += 24;
         } else {
             dnload += 10; */
-            
+
           soundsInputStream.close();
         } catch (Exception var12) {
             HLogger.error("Error Loading Sounds: " + var12);
-            
-            
-            
+
+
+
         }
-        
+
         /*
         j = 0;
         do {
@@ -4319,8 +4319,8 @@ stracks[i - 1].resume();
                 dnload += 6;
             }
         } while (++j < 3);
-        
-        
+
+
     }
         j = 0;
         do {
@@ -4331,7 +4331,7 @@ stracks[i - 1].resume();
                 dnload += 7;
             }
         } while (++j < 3);*/
-        
+
         System.gc();
     }
 
