@@ -269,7 +269,7 @@ public class ContO {
                         byte0 = 1;
                     }
                     if (line.startsWith("noOutline")) {
-                        flag4 = true;
+                        p[i1].solo = true;
                     }
                     if (line.startsWith("p")) {
                         ai[i] = (int) ((Utility.getint("p", line, 0) * f * f1) * nfmm_scale[0]);
