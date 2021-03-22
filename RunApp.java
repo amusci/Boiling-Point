@@ -35,7 +35,7 @@ class RunApp extends Panel {
 
     public static void main(String[] strings) {
         System.runFinalizersOnExit(true);
-        HLogger.info("UNFM2 Console"); // Change this to the message of your preference
+        HLogger.info("Burnin' Madness Console"); // Change this to the message of your preference
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
@@ -45,7 +45,7 @@ class RunApp extends Panel {
     }
 
     private static void startup() {
-        frame = new Frame("UNFM2");// Change this to the name of your preference
+        frame = new Frame("Burnin' Madness");// Change this to the name of your preference
         frame.setBackground(new Color(0, 0, 0));
         frame.setIgnoreRepaint(true);
         frame.setIconImages(getIcons());
