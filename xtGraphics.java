@@ -1657,14 +1657,22 @@ class xtGraphics extends Panel implements Runnable {
             //this also serves as a check so radicalmidi doesn't throw an error
 
             if (f.exists()) {
+
+                tracks[i - 1] = new RadicalMusic("music/stage" + i + ".mid");
+
+                tracks[i - 1].load();
                 loadedt[i - 1] = true;
             } else if (f2.exists()) {
+
+                tracks[i - 1] = new RadicalMusic("music/stage" + i + ".mp3");
+
+                tracks[i - 1].load();
                 loadedt[i - 1] = true;
             } else if (f3.exists()) {
+
                 tracks[i - 1] = new RadicalMusic("music/stage" + i + ".ogg");
                 loadedt[i - 1] = true;
             } else if (f4.exists()) {
-
 
                 if (i == 1) {
                     tracks[0] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
