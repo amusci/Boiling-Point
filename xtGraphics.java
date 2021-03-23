@@ -1659,18 +1659,17 @@ class xtGraphics extends Panel implements Runnable {
             if (f.exists()) {
 
                 tracks[i - 1] = new RadicalMusic("music/stage" + i + ".mid");
-
                 tracks[i - 1].load();
                 loadedt[i - 1] = true;
             } else if (f2.exists()) {
 
                 tracks[i - 1] = new RadicalMusic("music/stage" + i + ".mp3");
-
                 tracks[i - 1].load();
                 loadedt[i - 1] = true;
             } else if (f3.exists()) {
 
                 tracks[i - 1] = new RadicalMusic("music/stage" + i + ".ogg");
+                tracks[i - 1].load(); //if ogg doesnt work delete this
                 loadedt[i - 1] = true;
             } else if (f4.exists()) {
 

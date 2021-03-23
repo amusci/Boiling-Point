@@ -1079,6 +1079,7 @@ public class GameSparker extends Applet implements Runnable {
                     u[0].enter = false;
                     u[0].handb = false;
                     if(xtgraphics.loadedt[checkpoints.stage - 1]) {
+                        xtgraphics.tracks[checkpoints.stage - 1].play();
 
                     }
                     setCursor(new Cursor(0));
