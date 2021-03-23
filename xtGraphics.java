@@ -19,7 +19,7 @@ class xtGraphics extends Panel implements Runnable {
      *
      */
     private static final long serialVersionUID = -6463312620664057856L;
-    
+
     SoundManager sm = new SoundManager();
     /**
      * starting colors for the special screen in the credits
@@ -49,7 +49,7 @@ class xtGraphics extends Panel implements Runnable {
     public int looped;
     public final int[] sc;
     public boolean setnumber;
-    
+
 
     /*
      * hm... it would be interesting if there was a ystart...
@@ -185,15 +185,14 @@ class xtGraphics extends Panel implements Runnable {
     private final AudioClip[] dustskid;
     */
     public boolean mutes;
-    private RadicalMod stages;
-    private RadicalMod cars;
-    public final RadicalMod[] stracks;
-    RadicalMidi mtracks[];
-    boolean isMidi[];
+
+    private RadicalMusic stages;
+    private RadicalMusic cars;
+    RadicalMusic tracks[];
+
     public final boolean[] loadedt;
     private int lastload;
     private boolean mutem;
-    private boolean sunny;
     private boolean macn;
     private boolean arrace;
     private int ana;
@@ -210,9 +209,9 @@ class xtGraphics extends Panel implements Runnable {
     private int laps;
     private final int[] dested;
     private final String[] names = {
-            "Tornado Shark", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
-            "Kool Kat", "Drifter X", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
-            "Radical One", "DR Monstaa"
+            "Mantis", "Bullet", "ADP", "Rebel", "Kodai", "Hound", "DX Turbo",
+            "Inferno", "BT One", "Macari", "Panini", "Mammoth", "Vice", "GT Blaze",
+            "Panther", "DR Monstaa"
     };
     private int dmcnt;
     private boolean dmflk;
@@ -589,14 +588,12 @@ class xtGraphics extends Panel implements Runnable {
 
         rd.drawString("" + text, xScreenCoor, yScreenCoor);
     }
-    public void carspergame()
-    {
-        if(!setnumber)
-        {
+
+    public void carspergame() {
+        if (!setnumber) {
             GameFacts.numberOfPlayers = 7;
             setnumber = true;
-        } else
-        {
+        } else {
             fase = 2;
         }
     }
@@ -642,7 +639,7 @@ class xtGraphics extends Panel implements Runnable {
 
     public void loadingstage(int i) {
         /*
-         * 
+         *
          * looks better without idc fight me
         trackbg(true);
         rd.setColor(new Color(177, 177, 177));
@@ -658,10 +655,10 @@ class xtGraphics extends Panel implements Runnable {
         FontHandler.fMetrics = rd.getFontMetrics();
         drawcs(511, "You can also use Keyboard Arrows and Enter to navigate.", 82, 90, 0, 3);
         app.repaint();*/
-        
-        
+
+
         if (lastload != -22) {
-            stages.loadMod(135, 7800, 125, sunny, macn);
+
             lastload = -22;
         } else {
             stages.stop();
@@ -732,7 +729,7 @@ class xtGraphics extends Panel implements Runnable {
         if (flipo == 3 || flipo == 5) {//2-3 page
             if (flipo == 3) {
                 rd.drawString("Hello!  This will be changed eventually.", 312, 42);
-                
+
                 //
                 //rd.drawImage(nfm, 519, 30, null);
                 rd.drawString("In this game there are two ways to complete a stage.", 312, 82);
@@ -762,7 +759,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Brake/Reverse", 555, 372);
             rd.drawString("Turn left", 504, 350);
             rd.drawString("Turn right", 640, 350);
-           
+
         }
         if (flipo == 7 || flipo == 9) { // 4-5 page
             if (flipo == 7) {
@@ -771,7 +768,7 @@ class xtGraphics extends Panel implements Runnable {
                 rd.drawString("=> More 'Power' makes your car become faster and stronger!", 312, 82);
                 rd.drawString("To power up your car (and keep it powered up) you will need to", 312, 102);
                 rd.drawString("perform stunts!", 312, 122);
-                
+
             } else {
                 rd.drawString("The better the stunt the more power you get!", 312, 42);
                 rd.setColor(new Color(100, 100, 100));
@@ -779,10 +776,10 @@ class xtGraphics extends Panel implements Runnable {
                 rd.drawString("when racing. Backward looping pushes your car upwards giving it", 312, 82);
                 rd.drawString("more hang time in the air making it easier to control its landing.", 312, 102);
                 rd.drawString("Left and right rolls shift your car in the air left and right slightly.", 312, 122);
-                
+
             }
             rd.drawImage(stunts, 155, 150, null);
-            
+
             rd.setFont(new Font("SansSerif", 1, 13));
             rd.drawString("To perform stunts. When your car is in the AIR;", 175, 285);
             rd.drawString("Press combo Spacebar + Arrow Keys :", 175, 305);
@@ -793,9 +790,9 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Forward Loop", 565, 294);
             rd.drawString("Backward Loop", 555, 372);
             rd.drawString("Left Roll", 504, 350);
-            rd.drawString("Right Roll", 640, 350); 
-           
-            
+            rd.drawString("Right Roll", 640, 350);
+
+
         }
         if (flipo == 11 || flipo == 13) { //6-7 page
             if (flipo == 11) {
@@ -844,7 +841,7 @@ class xtGraphics extends Panel implements Runnable {
         }
         if (flipo == 1) {//first papge
             rd.setFont(new Font("SansSerif", 1, 13));
-            
+
             FontHandler.fMetrics = rd.getFontMetrics();
             drawcs(20, "Main Game Controls", 0, 0, 0, 3);
             rd.drawString("Drive your car using the Arrow Keys:", 175, 55);
@@ -857,7 +854,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Brake/Reverse", 555, 132);
             rd.drawString("Turn left", 504, 110);
             rd.drawString("Turn right", 640, 110);
-            
+
             drawcs(150, "--------------------------------------------------------------------------------"
                     + "--------------------------------------------------------------------", 0, 0, 0, 3);
             rd.setFont(new Font("SansSerif", 1, 13));
@@ -865,7 +862,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("To perform stunts:", 175, 175);
             rd.drawString("In the AIR press combo Spacebar + Arrow Keys :", 175, 195);
             rd.drawImage(space, 235, 220, null);
-            
+
             rd.drawImage(arrows, 541, 188, null);
             rd.setFont(new Font("SansSerif", 1, 11));
             FontHandler.fMetrics = rd.getFontMetrics();
@@ -874,7 +871,7 @@ class xtGraphics extends Panel implements Runnable {
             rd.drawString("Backward Loop", 540, 262);
             rd.drawString("Left Roll", 493, 240);
             rd.drawString("Right Roll", 626, 240);
-            
+
             rd.drawImage(stunts, 175, 290, null);
         }
         if (flipo >= 1 && flipo <= 13) {
@@ -969,9 +966,9 @@ class xtGraphics extends Panel implements Runnable {
         int ai1[] = new int[7];
         int ai2[] = new int[7];
         /**
-        * x resolution divided by two converted to hex
-        * http://www.binaryhexconverter.com/decimal-to-hex-converter
-        */
+         * x resolution divided by two converted to hex
+         * http://www.binaryhexconverter.com/decimal-to-hex-converter
+         */
         char c = '\u01C2';
         byte byte0 = -90;
         /**
@@ -1410,14 +1407,18 @@ class xtGraphics extends Panel implements Runnable {
                 mutem = Control.mutem;
                 if (mutem) {
                     if (loadedt[i - 1]) {
-                        if(isMidi[i - 1]) {
-                            mtracks[i - 1].setPaused(true);
-                        } else {
-                            stracks[i - 1].stop();
-                        }
+                        tracks[i - 1].stop();
                     }
                 } else if (loadedt[i - 1]) {
-                    stracks[i - 1].resume();System.out.println("We've reached an unmute check...");
+<<<<<<< HEAD
+                    tracks[i - 1].resume();
+=======
+                    try {
+                        stracks[i - 1].resume();
+                        System.out.println("We've reached an unmute check...");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if(isMidi[i - 1]) {
                         System.out.println("Unmute check > play midi...");
                         mtracks[i - 1].resume();
@@ -1425,6 +1426,7 @@ class xtGraphics extends Panel implements Runnable {
                         System.out.println("Unmute check > play mod...");
                         stracks[i - 1].resume();
                     }
+>>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
                 }
             }
         }
@@ -1661,7 +1663,18 @@ class xtGraphics extends Panel implements Runnable {
             runner = new Thread(this);
             runner.start();
         }
-        
+
+<<<<<<< HEAD
+        if (!loadedt[i - 1]) {
+            //System.out.println("Loading music...");
+            File f = new File("music/stage" + i + ".mid");
+            File f2 = new File("music/stage" + i + ".mp3");
+            File f3 = new File("music/stage" + i + ".ogg");
+            File f4 = new File("music/stage" + i + ".radq");
+            //this also serves as a check so radicalmidi doesn't throw an error
+
+            if (f.exists()) {
+=======
         if(!loadedt[i - 1])
         {
             System.out.println("Loading music...");
@@ -1669,7 +1682,7 @@ class xtGraphics extends Panel implements Runnable {
             File f2 = new File("music/stage" + i + ".mp3");
             File f3 = new File("music/stage" + i + ".ogg");
              //this also serves as a check so radicalmidi doesn't throw an error
-            
+
            if (f.exists())
             {
                 System.out.println("Initializing midi...");
@@ -1677,38 +1690,77 @@ class xtGraphics extends Panel implements Runnable {
                 mtracks[i - 1] = new RadicalMidi("music/stage" + i + ".mid");
                 System.out.println("Loading midi...");
                 mtracks[i - 1].load();
+>>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
                 loadedt[i - 1] = true;
-            }
-            else if (f2.exists())
-            {
-                System.out.println("Initializing mp3...");
-                isMidi[i - 1] = true;
-                mtracks[i - 1] = new RadicalMidi("music/stage" + i + ".mp3");
-                System.out.println("Loading mp3...");
-                mtracks[i - 1].load();
+            } else if (f2.exists()) {
                 loadedt[i - 1] = true;
-            }
-            else if (f3.exists())
-            {
-                System.out.println("Initializing/loading ogg...");
-                isMidi[i - 1] = true;
-                mtracks[i - 1] = new RadicalMidi("music/stage" + i + ".ogg");
+            } else if (f3.exists()) {
+                tracks[i - 1] = new RadicalMusic("music/stage" + i + ".ogg");
                 loadedt[i - 1] = true;
-            }
-            else
-            {
-                System.out.println("Initializing mod...");
-                isMidi[i - 1] = false;
-                stracks[i - 1] = new RadicalMod("music/stage" + i + ".radq", app);
-                if(stracks[i - 1].loaded == 1)
-                {
+            } else if (f4.exists()) {
+
+
+                if (i == 1) {
+                    tracks[0] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 2) {
+                    tracks[1] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 3) {
+                    tracks[2] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 4) {
+                    tracks[3] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 5) {
+                    tracks[4] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 6) {
+                    tracks[5] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 7) {
+                    tracks[6] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 8) {
+                    tracks[7] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 9) {
+                    tracks[8] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 10) {
+                    tracks[9] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 11) {
+                    tracks[10] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 12) {
+                    tracks[11] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 13) {
+                    tracks[12] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 14) {
+                    tracks[13] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 15) {
+                    tracks[14] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 16) {
+                    tracks[15] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (i == 17) {
+                    tracks[16] = new RadicalMusic("music/stage" + i + ".radq", 130, 8000, 125, macn);
+                }
+                if (tracks[i - 1].isLoaded()) {
                     loadedt[i - 1] = true;
                 }
             }
- 
+<<<<<<< HEAD
+=======
+
              if (!isMidi[i - 1]) {
              System.out.println("Loading mod...");
-        
+
                if(i == 1)
                {
                stracks[0].loadMod(130, 8000, 125, sunny, macn);
@@ -1778,6 +1830,7 @@ class xtGraphics extends Panel implements Runnable {
                stracks[16].loadMod(130, 8000, 125, sunny, macn);
              }
            }
+>>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
         }
         if (flag) {
             runner.stop();
@@ -1788,13 +1841,7 @@ class xtGraphics extends Panel implements Runnable {
         lastload = i - 1;
         if (j == 0) {
             if (loadedt[i - 1]) {
-                if (isMidi[i - 1]) {
-                    System.out.println("Playing midi...");
-                    mtracks[i - 1].play();
-                } else {
-                    System.out.println("Playing mod...");
-                    stracks[i - 1].play();
-                }
+                tracks[i - 1].play();
             }
             app.setCursor(new Cursor(0));
             fase = 6;
@@ -1805,6 +1852,7 @@ class xtGraphics extends Panel implements Runnable {
         mutem = false;
         mutes = false;
     }
+
     /**
      * Loads images from images.radq
      *
@@ -2127,65 +2175,56 @@ class xtGraphics extends Panel implements Runnable {
         if (control.enter || control.handb) {
             if (opselect == 0) {
                 if (loadedt[i - 1] && !mutem) {
-                    System.out.println("We've reached an unmute check...");
-                    if(isMidi[i - 1]) {
-                        System.out.println("Unmute check > play midi...");
-                        mtracks[i - 1].resume();
-                    } else {
-                        System.out.println("Unmute check > play mod...");
-                        stracks[i - 1].resume();
-                    }
+                    tracks[i - 1].resume();
                 }
                 fase = 0;
             }
             if (opselect == 1) {
                 if (record.caught >= 300) {
                     if (loadedt[i - 1] && !mutem) {
-                        System.out.println("We've reached an unmute check...");
-                        if(isMidi[i - 1]) {
-                            System.out.println("Unmute check > play midi...");
-                            mtracks[i - 1].resume();
-                        } else {
-System.out.println("Unmute check > play mod...");
-stracks[i - 1].resume();
-}
-                    }
-                    fase = -1;
-                } else {
-                    fase = -8;
-                }
-            }
-            if (opselect == 2) {
-                if (loadedt[i - 1]) {
-                    if(isMidi[i - 1]) {
-                        mtracks[i - 1].setPaused(true);
-                    } else {
-                        if(isMidi[i - 1]) {
-                            mtracks[i - 1].setPaused(true);
-                        } else {
-                            stracks[i - 1].stop();
-                        }
+                        tracks[i - 1].resume();
                     }
                 }
-                oldfase = -7;
-                fase = 11;
+                fase = -1;
+            } else {
+                fase = -8;
             }
+        }
+        if (opselect == 2) {
+            if (loadedt[i - 1]) {
+                tracks[i - 1].stop();
+            }
+<<<<<<< HEAD
+            oldfase = -7;
+            fase = 11;
+        }
+        if (opselect == 3) {
+            if (loadedt[i - 1]) {
+                tracks[i - 1].stop();
+=======
             if (opselect == 3) {
                 if (loadedt[i - 1]) {
                    if(isMidi[i - 1]) {
                        mtracks[i - 1].setPaused(true);
-    
+
                     } else {
                         stracks[i - 1].stop();
                   }
                 }
                 fase = 10;
                 opselect = 0;
+>>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
             }
-            control.enter = false;
-            control.handb = false;
+            fase = 10;
+            opselect = 0;
         }
+        control.enter = false;
+        control.handb = false;
     }
+
+
+
+
 
     public void credits(Control control) {
         if (flipo == 0) {
@@ -2308,11 +2347,7 @@ stracks[i - 1].resume();
             }
             if (control.enter) {
                 if (loadedt[checkpoints.stage - 1]) {
-                    if(isMidi[checkpoints.stage - 1]) {
-                        mtracks[checkpoints.stage - 1].setPaused(true);
-                    } else {
-                        stracks[checkpoints.stage - 1].stop();
-                    }
+                    tracks[checkpoints.stage - 1].stop();
                 }
                 fase = -6;
                 control.enter = false;
@@ -2413,14 +2448,14 @@ stracks[i - 1].resume();
                 if (!holdit && fase != -6 && starcnt == 0) {
                         rd.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                         arrow(madness[0].point, madness[0].missedcp, checkpoints, conto, arrace);
-                    
+
                         int num_cars = 7;
                   for (int array_one = 0; array_one < num_cars; array_one++) {
                          boolean flag_status = false;
                        for (int array_two = 0; array_two < num_cars; array_two++) {
                           if (checkpoints.pos[array_two] == array_one && checkpoints.dested[array_two] == 0 && !flag_status) {
                          int y_value = 30; // use to move status up or down
-                         int x_value = 0;  // use to move status left or right
+                         int x_value = 100;  // use to move status left or right
 
                          rd.setColor(new Color(0, 0, 100));
                          if (array_one == 0)
@@ -2534,7 +2569,7 @@ stracks[i - 1].resume();
                         }
                     }
                 }
-    
+
                 if (Medium.flex != 2 || Medium.flex == 2) {
                    rd.drawImage(dmg, 470, 7, null);
                    rd.drawImage(pwr, 470, 27, null);
@@ -3092,11 +3127,7 @@ stracks[i - 1].resume();
         if (control.enter || control.handb) {
             fase = 10;
             if (loadedt[checkpoints.stage - 1]) {
-                if(isMidi[checkpoints.stage - 1]) {
-                    mtracks[checkpoints.stage - 1].setPaused(true);
-                } else {
-                    stracks[checkpoints.stage - 1].stop();
-                }
+                tracks[checkpoints.stage - 1].stop();
             }
             if (checkpoints.stage == unlocked && winner && unlocked != GameFacts.numberOfStages) {
                 checkpoints.stage++;
@@ -3284,9 +3315,8 @@ stracks[i - 1].resume();
 
     public void stageselect(CheckPoints checkpoints, Control control) {
         for (int i = 0; i < 17; i++) { //change depending on amount of stages
-            mtracks[i] = null;
-            stracks[i] = null;
-            isMidi[i] = false;
+            tracks[i] = null;
+
             loadedt[i] = false;
         }
         stages.play();
@@ -3318,7 +3348,7 @@ stracks[i - 1].resume();
             control.handb = false;
             control.enter = false;
             stages.stop();
-            stages.unloadMod();
+            stages.unload();
         }
         if (control.right && checkpoints.stage < 17) {
             if (checkpoints.stage != unlocked) {
@@ -3656,13 +3686,10 @@ stracks[i - 1].resume();
         /*skid = new AudioClip[3];
         dustskid = new AudioClip[3];*/
         mutes = false;
-        stracks = new RadicalMod[GameFacts.numberOfStages]; //change if more stages
-        mtracks = new RadicalMidi[GameFacts.numberOfStages];
-        isMidi = new boolean[GameFacts.numberOfStages];
+        tracks = new RadicalMusic[GameFacts.numberOfStages];
         loadedt = new boolean[GameFacts.numberOfStages];
         lastload = -1;
         mutem = false;
-        sunny = false;
         macn = false;
         arrace = false;
         ana = 0;
@@ -3746,19 +3773,15 @@ stracks[i - 1].resume();
         int i = 0;
         do {
             loadedt[i] = false;
-            isMidi[i] = false;
+
         } while (++i < GameFacts.numberOfStages); //change if more stages
     }
 
     public void maini(Control control) {
         cars.play();
-        cars.loadMod(200, 7900, 125, sunny, macn);
+
         if (lastload >= 0 && loadedt[lastload]) {
-            if (isMidi[lastload]) {
-                mtracks[lastload].unloadMidi();
-            } else {
-                stracks[lastload].unloadMod();
-            }
+            tracks[lastload].unload();
         }
         if (flipo == 0) {
             bgmy[0] = 0;
@@ -4069,17 +4092,9 @@ stracks[i - 1].resume();
         rd.drawImage(image, 0, 0, null);
     }
 
-    public void loaddata(int i) {
-        kbload = 625;
-        sunny = false;
-        String s = "default/";
-        String s1 = "au";
-        if (i == 2) {
-            kbload = 950;
-            sunny = true;
-            s = "JavaNew/";
-            s1 = "wav";
-        }
+    public void loaddata() {
+        kbload = 950;
+
         String s2 = System.getProperty("os.name");
         if (!s2.startsWith("Win")) {
             macn = true;
@@ -4092,9 +4107,9 @@ stracks[i - 1].resume();
         loadimages();
         //loadnetworkimages();
 
-        cars = new RadicalMod("music/cars.radq", app);
+        cars = new RadicalMusic("music/cars.radq", 200, 7900, 125, macn);
         dnload += 27;
-        
+
         /*
         int j = 0;
         do {
@@ -4106,10 +4121,10 @@ stracks[i - 1].resume();
             pengs[j] = false;
         } while (++j < 5);
         */
-        stages = new RadicalMod("music/stages.radq", app);
+        stages = new RadicalMusic("music/stages.radq", 135, 7800, 125, macn);
         dnload += 91;
-        
-        
+
+
         /*j = 0;
         do {
             air[j] = getSound("sounds/" + s + "air" + j + ".au");
@@ -4233,8 +4248,8 @@ stracks[i - 1].resume();
 
                 this.dnload += 5;
             }
-            
-        /*    
+
+        /*
         } while (++j < 3);
         tires = getSound("sounds/" + s + "tires." + s1);
         if (i == 2) {
@@ -4295,15 +4310,15 @@ stracks[i - 1].resume();
             dnload += 24;
         } else {
             dnload += 10; */
-            
+
           soundsInputStream.close();
         } catch (Exception var12) {
             HLogger.error("Error Loading Sounds: " + var12);
-            
-            
-            
+
+
+
         }
-        
+
         /*
         j = 0;
         do {
@@ -4314,8 +4329,8 @@ stracks[i - 1].resume();
                 dnload += 6;
             }
         } while (++j < 3);
-        
-        
+
+
     }
         j = 0;
         do {
@@ -4326,7 +4341,7 @@ stracks[i - 1].resume();
                 dnload += 7;
             }
         } while (++j < 3);*/
-        
+
         System.gc();
     }
 
@@ -4451,12 +4466,9 @@ stracks[i - 1].resume();
         int i = 0;
         do {
             if (loadedt[i]) {
-                if (isMidi[i]) {
-                    mtracks[i].unloadMidi();
-                } else {
-                    stracks[i].unloadAll();
-                    stracks[i] = null;
-                }
+                tracks[i].unload();
+                tracks[i] = null;
+
             }
         } while (++i < GameFacts.numberOfStages);
         i = 0;
@@ -4470,15 +4482,14 @@ stracks[i - 1].resume();
             sm.stop("air"+i);
         } while (++i < 6);
         sm.stop("wasted");
-        cars.unloadAll();
-        stages.unloadAll();
+        cars.unload();
+        stages.unload();
     }
 
     public void inishcarselect() {
         carsbginflex();
         flatrstart = 0;
         Medium.lightson = false;
-        cars.loadMod(200, 7900, 125, sunny, macn);
         pnext = 0;
         pback = 0;
     }
@@ -4503,7 +4514,10 @@ stracks[i - 1].resume();
         Medium.xz = 0;
         Medium.zy = 10;
         Medium.ground = 470;
-        aconto[sc[0]].d(rd);
+        if ((sc[0] - 7) * 2 >= unlocked) {
+            aconto[sc[0]].blackout = true;
+        }
+        aconto[sc[0]].d(rd);//comment this out if u want invisible car select
         if (flipo == 0) {
             rd.setFont(new Font("SansSerif", 1, 13));
             FontHandler.fMetrics = rd.getFontMetrics();
@@ -4682,7 +4696,7 @@ stracks[i - 1].resume();
             if (flipo == 0 && (sc[0] - 7) * 2 < unlocked) {
                 lastload = -11;
                 cars.stop();
-                cars.unloadMod();
+                cars.unload();
                 Medium.crs = false;
                 fase = 58;
             }
