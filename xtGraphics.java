@@ -1410,23 +1410,7 @@ class xtGraphics extends Panel implements Runnable {
                         tracks[i - 1].stop();
                     }
                 } else if (loadedt[i - 1]) {
-<<<<<<< HEAD
                     tracks[i - 1].resume();
-=======
-                    try {
-                        stracks[i - 1].resume();
-                        System.out.println("We've reached an unmute check...");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    if(isMidi[i - 1]) {
-                        System.out.println("Unmute check > play midi...");
-                        mtracks[i - 1].resume();
-                    } else {
-                        System.out.println("Unmute check > play mod...");
-                        stracks[i - 1].resume();
-                    }
->>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
                 }
             }
         }
@@ -1664,7 +1648,6 @@ class xtGraphics extends Panel implements Runnable {
             runner.start();
         }
 
-<<<<<<< HEAD
         if (!loadedt[i - 1]) {
             //System.out.println("Loading music...");
             File f = new File("music/stage" + i + ".mid");
@@ -1674,23 +1657,6 @@ class xtGraphics extends Panel implements Runnable {
             //this also serves as a check so radicalmidi doesn't throw an error
 
             if (f.exists()) {
-=======
-        if(!loadedt[i - 1])
-        {
-            System.out.println("Loading music...");
-            File f = new File("music/stage" + i + ".mid");
-            File f2 = new File("music/stage" + i + ".mp3");
-            File f3 = new File("music/stage" + i + ".ogg");
-             //this also serves as a check so radicalmidi doesn't throw an error
-
-           if (f.exists())
-            {
-                System.out.println("Initializing midi...");
-                isMidi[i - 1] = true;
-                mtracks[i - 1] = new RadicalMidi("music/stage" + i + ".mid");
-                System.out.println("Loading midi...");
-                mtracks[i - 1].load();
->>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
                 loadedt[i - 1] = true;
             } else if (f2.exists()) {
                 loadedt[i - 1] = true;
@@ -1755,82 +1721,6 @@ class xtGraphics extends Panel implements Runnable {
                     loadedt[i - 1] = true;
                 }
             }
-<<<<<<< HEAD
-=======
-
-             if (!isMidi[i - 1]) {
-             System.out.println("Loading mod...");
-
-               if(i == 1)
-               {
-               stracks[0].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 2)
-               {
-               stracks[1].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 3)
-               {
-               stracks[2].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 4)
-               {
-               stracks[3].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 5)
-               {
-               stracks[4].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 6)
-               {
-               stracks[5].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 7)
-               {
-               stracks[6].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 8)
-               {
-               stracks[7].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 9)
-               {
-               stracks[8].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 10)
-               {
-               stracks[9].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 11)
-               {
-               stracks[10].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 12)
-               {
-               stracks[11].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 13)
-               {
-               stracks[12].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 14)
-               {
-               stracks[13].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 15)
-               {
-               stracks[14].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 16)
-               {
-               stracks[15].loadMod(130, 8000, 125, sunny, macn);
-             }
-               if(i == 17)
-               {
-               stracks[16].loadMod(130, 8000, 125, sunny, macn);
-             }
-           }
->>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
         }
         if (flag) {
             runner.stop();
@@ -2194,26 +2084,12 @@ class xtGraphics extends Panel implements Runnable {
             if (loadedt[i - 1]) {
                 tracks[i - 1].stop();
             }
-<<<<<<< HEAD
             oldfase = -7;
             fase = 11;
         }
         if (opselect == 3) {
             if (loadedt[i - 1]) {
                 tracks[i - 1].stop();
-=======
-            if (opselect == 3) {
-                if (loadedt[i - 1]) {
-                   if(isMidi[i - 1]) {
-                       mtracks[i - 1].setPaused(true);
-
-                    } else {
-                        stracks[i - 1].stop();
-                  }
-                }
-                fase = 10;
-                opselect = 0;
->>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
             }
             fase = 10;
             opselect = 0;

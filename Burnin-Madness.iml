@@ -14,19 +14,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD
     <orderEntry type="library" name="logmaster-rev5.jar" level="application" />
-=======
-    <orderEntry type="module-library">
-      <library name="logmaster-rev5.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/logmaster-rev5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
->>>>>>> 3c5272429eec1cec535212ccefbcb8f4e51b9080
     <orderEntry type="module-library">
       <library>
         <CLASSES>
