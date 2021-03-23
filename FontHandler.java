@@ -29,6 +29,7 @@ class FontHandler {
         try {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(fontPath + "OpenSans-Bold.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(fontPath + "NCC1701A.ttf")));
 
 			/*
 			 * how to do it
@@ -42,12 +43,12 @@ class FontHandler {
 			/*
 			 * print out all the fonts that are usable by java in your environment
 			 */
-			/*Font[] fonts = ge.getAllFonts();
+			Font[] fonts = ge.getAllFonts();
 			for (int i = 0; i < fonts.length; i++) {
 				HLogger.info(fonts[i].getFontName() + " : ");
 				HLogger.info(fonts[i].getFamily() + " : ");
 				HLogger.info(fonts[i].getName());
-			}*/
+			}
 
         } catch (FontFormatException | IOException e) {
             // TODO Auto-generated catch block

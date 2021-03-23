@@ -656,8 +656,13 @@ class xtGraphics extends Panel implements Runnable {
         drawcs(511, "You can also use Keyboard Arrows and Enter to navigate.", 82, 90, 0, 3);
         app.repaint();*/
 
+        /*
+        if (lastload != -22) {
 
-
+            lastload = -22;
+        } else {
+            stages.stop();
+        }*/
     }
 
     public void inst(Control control) {
@@ -1664,7 +1669,7 @@ class xtGraphics extends Panel implements Runnable {
             } else if (f3.exists()) {
 
                 tracks[i - 1] = new RadicalMusic("music/stage" + i + ".ogg");
-                tracks[i - 1].load(); //if ogg doesnt work delete this
+                tracks[i - 1].load(); //if ogg wont work delete this
                 loadedt[i - 1] = true;
             } else if (f4.exists()) {
 
@@ -3217,17 +3222,28 @@ class xtGraphics extends Panel implements Runnable {
         rd.setFont(new Font("SansSerif", 1, 11));
         FontHandler.fMetrics = rd.getFontMetrics();
         drawcs(396, "You can also use Keyboard Arrows and Enter to navigate.", 82, 90, 0, 3);
-        if(control.handb || control.enter)
-        {
+        if (control.handb || control.enter) {
+            /*
             asay = "Stage " + checkpoints.stage + ":  " + checkpoints.name + " ";
             dudo = 150;
-            m.trk = false;
-            m.focus_point = 400;
-            fase = 5;
+            Medium.trk = false;
+            Medium.focus_point = 500;
+            fase = 205;
+            control.handb = false;
+            control.enter = false;
+            stages.stop();
+            stages.unload();*/
+
+            asay = "Stage " + checkpoints.stage + ":  " + checkpoints.name + " ";
+            dudo = 150;
+            Medium.trk = false;
+            Medium.focus_point = 500;
+            fase = 205;
             control.handb = false;
             control.enter = false;
             cars.stop();
             cars.unload();
+
         }
         if (control.right && checkpoints.stage < 17) {
             if (checkpoints.stage != unlocked) {
@@ -4280,7 +4296,7 @@ class xtGraphics extends Panel implements Runnable {
             FontHandler.fMetrics = rd.getFontMetrics();
             drawcs(160 + (int) (5F * Medium.random()), "Radicalplay.com", 112, 120, 143, 3);
         }
-        rd.setFont(new Font("SansSerif", 1, 11));
+        rd.setFont(new Font("NCC1701A", 1, 31));
         FontHandler.fMetrics = rd.getFontMetrics();
         if (aflk) {
             drawcs(190, "And we are never going to find the new unless we get a little crazy...", 112, 120, 143, 3);
@@ -4339,7 +4355,7 @@ class xtGraphics extends Panel implements Runnable {
         rd.fillRoundRect(250, 73, 500, 23, 7, 20);
         rd.setColor(new Color(0, 89, 223));
         rd.drawRoundRect(250, 73, 500, 23, 7, 20);
-        drawcs(89, "Sorry not enough replay data to play available, please try again later.", 255, 255, 255, 1);
+        drawcs(89, "Bruh the game just started.", 255, 255, 255, 1);
     }
 
     public void stopallnow() {
@@ -4575,10 +4591,9 @@ class xtGraphics extends Panel implements Runnable {
         if (control.handb || control.enter) {
             if (flipo == 0 && (sc[0] - 7) * 2 < unlocked) {
                 lastload = -11;
-                //cars.stop();
-                //cars.unload();
+
                 Medium.crs = false;
-                fase = 58;
+                fase = 58; //maybe 2 idk
             }
             control.handb = false;
             control.enter = false;
