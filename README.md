@@ -3,12 +3,12 @@ A NFM Version based off childhood game, Burnin' Rubber.
 
 # Developers
 
-ToaZuka - Manager, Graphic Design, Car Design
-Addict - Java Developer, Stage Maker
-G6 - Java Developer, Car Design
-Alexus - Car Design
-Tunari - Car Design
-Ultimato - Stage Maker
+ToaZuka - Manager, Graphic Design, Car Design\
+Addict - Java Developer, Stage Maker\
+G6 - Java Developer, Car Design\
+Alexus - Car Design\
+Tunari - Car Design\
+Ultimato - Stage Maker\
 Sam - Stage Maker
 
 
