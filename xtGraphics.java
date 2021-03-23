@@ -657,12 +657,7 @@ class xtGraphics extends Panel implements Runnable {
         app.repaint();*/
 
 
-        if (lastload != -22) {
 
-            lastload = -22;
-        } else {
-            stages.stop();
-        }
     }
 
     public void inst(Control control) {
@@ -3202,7 +3197,7 @@ class xtGraphics extends Panel implements Runnable {
 
             loadedt[i] = false;
         }
-        stages.play();
+        //stages.play();
         rd.drawImage(select, 273, 45, null);
         if (checkpoints.stage != 1) {
             rd.drawImage(back[pback], 50, 110, null);
@@ -3222,16 +3217,17 @@ class xtGraphics extends Panel implements Runnable {
         rd.setFont(new Font("SansSerif", 1, 11));
         FontHandler.fMetrics = rd.getFontMetrics();
         drawcs(396, "You can also use Keyboard Arrows and Enter to navigate.", 82, 90, 0, 3);
-        if (control.handb || control.enter) {
+        if(control.handb || control.enter)
+        {
             asay = "Stage " + checkpoints.stage + ":  " + checkpoints.name + " ";
             dudo = 150;
-            Medium.trk = false;
-            Medium.focus_point = 500;
-            fase = 205;
+            m.trk = false;
+            m.focus_point = 400;
+            fase = 5;
             control.handb = false;
             control.enter = false;
-            stages.stop();
-            stages.unload();
+            cars.stop();
+            cars.unload();
         }
         if (control.right && checkpoints.stage < 17) {
             if (checkpoints.stage != unlocked) {
@@ -3662,6 +3658,7 @@ class xtGraphics extends Panel implements Runnable {
 
     public void maini(Control control) {
         cars.play();
+        cars.load();
 
         if (lastload >= 0 && loadedt[lastload]) {
             tracks[lastload].unload();
@@ -4578,8 +4575,8 @@ class xtGraphics extends Panel implements Runnable {
         if (control.handb || control.enter) {
             if (flipo == 0 && (sc[0] - 7) * 2 < unlocked) {
                 lastload = -11;
-                cars.stop();
-                cars.unload();
+                //cars.stop();
+                //cars.unload();
                 Medium.crs = false;
                 fase = 58;
             }
