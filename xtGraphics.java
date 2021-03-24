@@ -54,6 +54,9 @@ class xtGraphics extends Panel implements Runnable {
     //start of addict variables
     int tripletime;
     int wastedtrip;
+    int time0;
+    int time1;
+    int time2;
 
 
     /*
@@ -2086,30 +2089,29 @@ class xtGraphics extends Panel implements Runnable {
                     if (loadedt[i - 1] && !mutem) {
                         tracks[i - 1].resume();
                     }
+                    fase = -1;
+                } else {
+                    fase = -8;
                 }
-                fase = -1;
-            } else {
-                fase = -8;
             }
-        }
-        if (opselect == 2) {
-            if (loadedt[i - 1]) {
-                tracks[i - 1].stop();
+            if (opselect == 2) {
+                if (loadedt[i - 1]) {
+                    tracks[i - 1].stop();
+                }
+                oldfase = -7;
+                fase = 11;
             }
-            oldfase = -7;
-            fase = 11;
-        }
-        if (opselect == 3) {
-            if (loadedt[i - 1]) {
-                tracks[i - 1].stop();
+            if (opselect == 3) {
+                if (loadedt[i - 1]) {
+                    tracks[i - 1].stop();
+                }
+                fase = 10;
+                opselect = 0;
             }
-            fase = 10;
-            opselect = 0;
+            control.enter = false;
+            control.handb = false;
         }
-        control.enter = false;
-        control.handb = false;
     }
-
 
 
 
@@ -2220,6 +2222,35 @@ class xtGraphics extends Panel implements Runnable {
     }
 
     public void stat(Madness madness[], CheckPoints checkpoints, Control control, ContO conto[], boolean flag) {
+
+        //timer
+        if(!checkpoints.haltall && starcnt == 0)
+        {
+            time2 += 5;
+            if(time2 > 99)
+            {
+                time2 = 0;
+                time1++;
+
+            }
+
+            if(time1 > 60)
+
+            {
+                time2 = 0;
+                time1 = 0;
+                time0++;
+
+            }
+        }
+        String time2String = String.format("%02d", time2);
+        String time1String = String.format("%02d", time1);
+        String time0String = String.format("%02d", time0);
+
+
+        //.drawString((new StringBuilder()).append(time0).append(":")
+                //.append(time1).append(":").append(time2).append("").toString(), 1100, 660);
+
         if (holdit) {
             holdcnt++;
             if (Medium.flex != 0) {
@@ -2462,6 +2493,16 @@ class xtGraphics extends Panel implements Runnable {
                    rd.drawImage(dmg, 470, 7, null);
                    rd.drawImage(pwr, 470, 27, null);
                    rd.drawImage(lap, 19, 7, null);
+                    rd.setColor(new Color(-m.csky[0] + 255, -m.csky[1] + 255, -m.csky[2] + 255));
+
+                    //timer
+                    rd.setFont(new Font("NCC1701A", 1, 31));
+                    FontHandler.fMetrics = rd.getFontMetrics();
+                    rd.drawString((new StringBuilder()).append(time0String).append(":")
+                            .append(time1String).append(":").append(time2String).toString(), 1000, 660);
+
+                   rd.setFont(new Font("SansSerif", 1, 15));
+                   FontHandler.fMetrics = rd.getFontMetrics();
                    rd.setColor(new Color(0, 0, 100));
                    rd.drawString("" + (madness[0].nlaps + 1) + " / " + checkpoints.nlaps + "", 51, 18);
                    rd.drawImage(was, 92, 7, null);
@@ -3417,6 +3458,9 @@ class xtGraphics extends Panel implements Runnable {
         //addict variables
         tripletime = 0;
         wastedtrip = 0;
+        time0 = 0;
+        time1 = 0;
+        time2 = 0;
 
         int j = 0;
         do {
@@ -3707,6 +3751,13 @@ class xtGraphics extends Panel implements Runnable {
         flangados = 0;
         blackn = 0.0F;
         blacknados = 0.0F;
+
+        //addict variables set
+        time0 = 0;
+        time1 = 0;
+        time2 = 0;
+
+
         m = medium;
         app = applet;
         rd = graphics2d;
@@ -4416,10 +4467,10 @@ class xtGraphics extends Panel implements Runnable {
 
     public void cantreply() {
         rd.setColor(new Color(64, 143, 223));
-        rd.fillRoundRect(250, 73, 500, 23, 7, 20);
+        rd.fillRoundRect(135, 73, 400, 23, 7, 20);
         rd.setColor(new Color(0, 89, 223));
-        rd.drawRoundRect(250, 73, 500, 23, 7, 20);
-        drawcs(89, "Bruh the game just started.", 255, 255, 255, 1);
+        rd.drawRoundRect(135, 73, 400, 23, 7, 20);
+        drawcs(89, "Sorry not enough replay data to play available, please try again later.", 255, 255, 255, 1);
     }
 
     public void stopallnow() {
