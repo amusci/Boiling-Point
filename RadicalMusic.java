@@ -28,6 +28,7 @@ public class RadicalMusic {
     private boolean paused = false;
     private boolean loaded = false;
     private boolean playing = false;
+    private boolean repeat;
     private String filename;
     private FileInputStream musicInputStream;
     private File musicFile;
@@ -384,5 +385,15 @@ public class RadicalMusic {
     private void unloadOgg() {
         ogg.stop();
         ogg.close();
+    }
+
+
+    //wip
+    public boolean isRepeat() {
+        return repeat;
+    }
+
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
     }
 }

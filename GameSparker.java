@@ -796,7 +796,7 @@ public class GameSparker extends Applet implements Runnable {
             /*
              * Note: that is an L
              */
-            xtgraphics.unlocked = l;
+            xtgraphics.unlocked = 17; //l
             if (xtgraphics.unlocked != GameFacts.numberOfStages)
                 checkpoints.stage = xtgraphics.unlocked;
             else

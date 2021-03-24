@@ -2538,18 +2538,18 @@ class xtGraphics extends Panel implements Runnable {
             if (!holdit) {
                 if (starcnt != 0 && starcnt <= 35) {
                     if (starcnt == 35 && !mutes) {
-                        sm.play("three");
+                        sm.play("start");
                     }
                     if (starcnt == 24) {
                         gocnt = 2;
                         if (!mutes) {
-                            sm.play("two");
+                            sm.play("start1");
                         }
                     }
                     if (starcnt == 13) {
                         gocnt = 1;
                         if (!mutes) {
-                            sm.play("one");
+                            sm.play("start2");
                         }
                     }
                     if (starcnt == 2) {
@@ -4255,6 +4255,18 @@ class xtGraphics extends Panel implements Runnable {
 
                 if (name.equals("firewasted.wav")) {
                     sm.add("firewasted", new SoundClipUnthreaded(sound));
+                }
+
+                //new sounds
+
+                if (name.equals("start.wav")) {
+                    sm.add("start", new SoundClipUnthreaded(sound));
+                }
+                if (name.equals("start.wav")) {
+                    sm.add("start1", new SoundClipUnthreaded(sound));
+                }
+                if (name.equals("start.wav")) {
+                    sm.add("start2", new SoundClipUnthreaded(sound));
                 }
 
                 this.dnload += 5;

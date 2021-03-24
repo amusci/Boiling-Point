@@ -263,7 +263,7 @@ public class Plane {
                 rd.fillPolygon(ai3, ai5, n);
             }
             float f = 1.0F;
-            if (embos <= 4)/// explode outward a little + white flame
+            if (embos <= 4)/// explode outward eva little + white flame
             {
                 f = 1.0F + Medium.random() / 5F;
             }
