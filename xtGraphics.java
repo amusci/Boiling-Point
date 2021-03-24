@@ -2343,7 +2343,7 @@ class xtGraphics extends Panel implements Runnable {
                        for (int array_two = 0; array_two < num_cars; array_two++) {
                           if (checkpoints.pos[array_two] == array_one && checkpoints.dested[array_two] == 0 && !flag_status) {
                          int y_value = 30; // use to move status up or down
-                         int x_value = 100;  // use to move status left or right
+                         int x_value = 575;  // use to move status left or right
 
                          rd.setColor(new Color(0, 0, 100));
                          if (array_one == 0)
