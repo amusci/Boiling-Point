@@ -51,6 +51,11 @@ class xtGraphics extends Panel implements Runnable {
     public boolean setnumber;
 
 
+    //start of addict variables
+    int tripletime;
+    int wastedtrip;
+
+
     /*
      * hm... it would be interesting if there was a ystart...
      * int ystart[] = {
@@ -2802,18 +2807,72 @@ class xtGraphics extends Panel implements Runnable {
                         dested[k] = checkpoints.dested[k];
                         if (dested[k] == 1) {
                             wasay = true;
-                            say = "" + names[sc[k]] + " has been wasted!";
+                            say = "" + names[sc[k]] + " has been taken down!";
                             tcnt = -15;
                         }
                         if (dested[k] == 2) {
                             wasay = true;
-                            say = "You wasted " + names[sc[k]] + "!";
+                            say = "You have taken down " + names[sc[k]] + "!"; //attempted multikills
                             tcnt = -15;
+                            if(tripletime == 0)
+                                tripletime = 1;
+                            wastedtrip++;
                         }
                     }
                 } while (++k < GameFacts.numberOfPlayers);
             }
         }
+        if (tripletime == 0)
+
+        { //attempting multikills
+            wastedtrip = 0;
+            tripletime = 0;
+        }
+
+        else
+
+        {
+
+            tripletime++;
+
+        }
+        if (tripletime <= 500){ /// the amount of time you have to get 2 more kills after you first waste a car
+            if (wastedtrip == 2)
+
+            {
+                wasay = true;
+                say = "Double Takedown!";
+                tcnt = -15;
+                if (tripletime >= 500)
+                {
+                    tripletime = 0;
+                }
+
+            }
+
+            else if (wastedtrip == 3)
+            {
+                wasay = true;
+                say = "Triple Takedown!";
+                tcnt = -15;
+                if (tripletime >= 500)
+                {
+                    tripletime = 0;
+                }
+
+            }
+            else if (wastedtrip == 4)
+            {
+                wasay = true;
+                say = "OVERKILL!";
+                tcnt = -15;
+                tripletime = 0;
+            }
+
+
+        }
+
+
     }
 
     public void finish(CheckPoints checkpoints, ContO aconto[], Control control) {
@@ -3020,7 +3079,8 @@ class xtGraphics extends Panel implements Runnable {
             control.enter = false;
             control.handb = false;
         }
-    }
+
+            }
 
     /**
      * unique car sorter
@@ -3354,6 +3414,10 @@ class xtGraphics extends Panel implements Runnable {
         winner = false;
         setnumber = false;
         wasted = 0;
+        //addict variables
+        tripletime = 0;
+        wastedtrip = 0;
+
         int j = 0;
         do {
             dested[j] = 0;
