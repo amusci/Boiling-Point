@@ -51,12 +51,18 @@ class xtGraphics extends Panel implements Runnable {
     public boolean setnumber;
 
 
-    //start of addict variables
-    int tripletime;
+    //start of global addict variables
+    boolean takedown = false;
+    boolean doubletakedown = false;
+    boolean tripletakedown = false;
+
+    int multitime;
     int wastedtrip;
     int time0;
     int time1;
     int time2;
+    int tditer = 50;
+
 
 
     /*
@@ -147,6 +153,12 @@ class xtGraphics extends Panel implements Runnable {
     private Image kn;
     private Image kenter;
     private Image nfm;
+    //new images
+
+    private Image takedown1;
+    private Image td1;
+
+
     private final Image[][] trackbg;
     public final Image[] dude;
     private final Image[] dudeb;
@@ -1987,6 +1999,14 @@ class xtGraphics extends Panel implements Runnable {
                 if ("nfmcom.gif".equals(s)) {
                     nfmcom = loadimage(abyte0, mediatracker, toolkit);
                 }
+
+                //new images
+
+
+                if ("takedown1.png".equals(s)) {
+                    takedown1 = loadimage(abyte0, mediatracker, toolkit);
+                }
+
                 howManyImages++;
                 dnload += 3;
             }
@@ -2223,7 +2243,53 @@ class xtGraphics extends Panel implements Runnable {
 
     public void stat(Madness madness[], CheckPoints checkpoints, Control control, ContO conto[], boolean flag) {
 
+
+
+        //showtakedowns
+        if (takedown) {
+            if (tditer > 0) {
+                rd.drawImage(td1, 232, 70, null);
+                tditer--;
+            } else {
+                tditer = 50;
+                takedown = false;
+            }
+
+        }
+        /*
+        else if(doubletakedown)
+        {
+            if (tditer > 0) {
+                rd.drawImage(td1, 232, 70, null);
+                tditer--;
+            } else {
+                tditer = 50;
+                takedown = false;
+            }
+
+        }
+        else if(tripletakedown)
+        {
+            if (tditer > 0) {
+                rd.drawImage(td1, 232, 70, null);
+                tditer--;
+            } else {
+                tditer = 50;
+                takedown = false;
+            }
+
+        }*/
+
+
+
+
+
+
+
+
+
         //timer
+
         if(!checkpoints.haltall && starcnt == 0)
         {
             time2 += 5;
@@ -2295,18 +2361,25 @@ class xtGraphics extends Panel implements Runnable {
                 winner = true;
             }
             if (!holdit && madness[0].dest && cntwis == 8) {
+
                 if (Medium.flex != 2) {
                     rd.setColor(new Color(Medium.csky[0], Medium.csky[1], Medium.csky[2]));
                     rd.fillRect(232, 70, yourwasted.getWidth(ob), yourwasted.getHeight(ob));
                     rd.setColor(new Color(Medium.cfade[0], Medium.cfade[1], Medium.cfade[2]));
                     rd.drawRect(232, 70, yourwasted.getWidth(ob), yourwasted.getHeight(ob));
                 }
+
+
                 rd.drawImage(yourwasted, 232, 70, null);
                 drawcs(350, "Press  [ Enter ]  to continue", 0, 0, 0, 0);
                 holdit = true;
                 winner = false;
+
+
             }
             if (!holdit) {
+
+
                 int i = 0;
                 do {
                     if (checkpoints.clear[i] == checkpoints.nlaps * checkpoints.nsp && checkpoints.pos[i] == 0) {
@@ -2490,6 +2563,9 @@ class xtGraphics extends Panel implements Runnable {
                 }
 
                 if (Medium.flex != 2 || Medium.flex == 2) {
+
+
+
                    rd.drawImage(dmg, 470, 7, null);
                    rd.drawImage(pwr, 470, 27, null);
                    rd.drawImage(lap, 19, 7, null);
@@ -2536,6 +2612,8 @@ class xtGraphics extends Panel implements Runnable {
                 }
              }
             if (!holdit) {
+
+
                 if (starcnt != 0 && starcnt <= 35) {
                     if (starcnt == 35 && !mutes) {
                         sm.play("start");
@@ -2558,6 +2636,7 @@ class xtGraphics extends Panel implements Runnable {
                             sm.play("go");
                         }
                     }
+
                     duds = 0;
                     if (starcnt <= 37 && starcnt > 32) {
                         duds = 1;
@@ -2830,7 +2909,7 @@ class xtGraphics extends Panel implements Runnable {
                 }
                 if (clear != madness[0].clear && madness[0].clear != 0) {
                     if (!wasay) {
-                        say = "Checkpoint!";
+                        say = "Checkpoint clear!";
                         tcnt = 15;
                     }
                     clear = madness[0].clear;
@@ -2851,54 +2930,66 @@ class xtGraphics extends Panel implements Runnable {
                             say = "" + names[sc[k]] + " has been taken down!";
                             tcnt = -15;
                         }
+
+                        /*
+                        if wasted
+                        boolean = false
+                        if boolean = false
+                           for i = 50; i<0; i--
+                           if i < 0
+                             draw image
+                         */
                         if (dested[k] == 2) {
                             wasay = true;
+                            takedown = true;
                             say = "You have taken down " + names[sc[k]] + "!"; //attempted multikills
                             tcnt = -15;
-                            if(tripletime == 0)
-                                tripletime = 1;
+                            if(multitime == 0)
+                                multitime = 1;
                             wastedtrip++;
                         }
                     }
                 } while (++k < GameFacts.numberOfPlayers);
             }
         }
-        if (tripletime == 0)
+        if (multitime == 0)
 
         { //attempting multikills
             wastedtrip = 0;
-            tripletime = 0;
+            multitime = 0;
         }
 
         else
 
         {
 
-            tripletime++;
+            multitime++;
 
         }
-        if (tripletime <= 500){ /// the amount of time you have to get 2 more kills after you first waste a car
+        if (multitime <= 350){ /// the amount of time you have to get 2 more kills after you first waste a car
             if (wastedtrip == 2)
 
             {
+                doubletakedown = true;
                 wasay = true;
                 say = "Double Takedown!";
                 tcnt = -15;
-                if (tripletime >= 500)
+                if (multitime >= 500)
                 {
-                    tripletime = 0;
+                    multitime = 0;
                 }
 
             }
 
             else if (wastedtrip == 3)
             {
+                tripletakedown = true;
                 wasay = true;
                 say = "Triple Takedown!";
                 tcnt = -15;
-                if (tripletime >= 500)
+                if (multitime >= 500)
                 {
-                    tripletime = 0;
+                    multitime = 0;
                 }
 
             }
@@ -2907,7 +2998,7 @@ class xtGraphics extends Panel implements Runnable {
                 wasay = true;
                 say = "OVERKILL!";
                 tcnt = -15;
-                tripletime = 0;
+                multitime = 0;
             }
 
 
@@ -3370,6 +3461,11 @@ class xtGraphics extends Panel implements Runnable {
         was = loadsnap(owas);
         lap = loadsnap(olap);
         pos = loadsnap(opos);
+
+        //custom images
+        td1 = loadsnap(takedown1);
+
+
         int j = 0;
         do {
             cntdn[j] = loadsnap(ocntdn[j]);
@@ -3456,7 +3552,7 @@ class xtGraphics extends Panel implements Runnable {
         setnumber = false;
         wasted = 0;
         //addict variables
-        tripletime = 0;
+        multitime = 0;
         wastedtrip = 0;
         time0 = 0;
         time1 = 0;
