@@ -55,6 +55,7 @@ class xtGraphics extends Panel implements Runnable {
     boolean takedown = false;
     boolean doubletakedown = false;
     boolean tripletakedown = false;
+    boolean overkill = false;
 
     int multitime;
     int wastedtrip;
@@ -155,8 +156,16 @@ class xtGraphics extends Panel implements Runnable {
     private Image nfm;
     //new images
 
+    private Image takedowngif;
     private Image takedown1;
+    private Image takedown2;
+    private Image takedown3;
+    private Image overkilltd;
+    private Image tdgif;
     private Image td1;
+    private Image td2;
+    private Image td3;
+
 
 
     private final Image[][] trackbg;
@@ -2002,9 +2011,20 @@ class xtGraphics extends Panel implements Runnable {
 
                 //new images
 
-
+                if ("takedown.gif".equals(s)) {
+                    takedowngif = loadimage(abyte0, mediatracker, toolkit);
+                }
                 if ("takedown1.png".equals(s)) {
                     takedown1 = loadimage(abyte0, mediatracker, toolkit);
+                }
+                if ("takedown2.png".equals(s)) {
+                    takedown2 = loadimage(abyte0, mediatracker, toolkit);
+                }
+                if ("takedown3.png".equals(s)) {
+                    takedown3 = loadimage(abyte0, mediatracker, toolkit);
+                }
+                if ("overkill.png".equals(s)) {
+                    overkilltd = loadimage(abyte0, mediatracker, toolkit);
                 }
 
                 howManyImages++;
@@ -2248,7 +2268,7 @@ class xtGraphics extends Panel implements Runnable {
         //showtakedowns
         if (takedown) {
             if (tditer > 0) {
-                rd.drawImage(td1, 232, 70, null);
+                rd.drawImage(takedowngif, 515, 170, null);
                 tditer--;
             } else {
                 tditer = 50;
@@ -2260,7 +2280,7 @@ class xtGraphics extends Panel implements Runnable {
         else if(doubletakedown)
         {
             if (tditer > 0) {
-                rd.drawImage(td1, 232, 70, null);
+                rd.drawImage(td2, 232, 70, null);
                 tditer--;
             } else {
                 tditer = 50;
@@ -2271,7 +2291,18 @@ class xtGraphics extends Panel implements Runnable {
         else if(tripletakedown)
         {
             if (tditer > 0) {
-                rd.drawImage(td1, 232, 70, null);
+                rd.drawImage(td3, 232, 70, null);
+                tditer--;
+            } else {
+                tditer = 50;
+                takedown = false;
+            }
+
+        }
+        else if(overkill)
+        {
+            if (tditer > 0) {
+                rd.drawImage(overkilltd, 232, 70, null);
                 tditer--;
             } else {
                 tditer = 50;
@@ -2952,6 +2983,8 @@ class xtGraphics extends Panel implements Runnable {
                 } while (++k < GameFacts.numberOfPlayers);
             }
         }
+
+        /*
         if (multitime == 0)
 
         { //attempting multikills
@@ -3002,7 +3035,7 @@ class xtGraphics extends Panel implements Runnable {
             }
 
 
-        }
+        }*/
 
 
     }
@@ -3462,8 +3495,13 @@ class xtGraphics extends Panel implements Runnable {
         lap = loadsnap(olap);
         pos = loadsnap(opos);
 
+
         //custom images
         td1 = loadsnap(takedown1);
+        td2 = loadsnap(takedown2);
+        td3 = loadsnap(takedown3);
+        overkilltd = loadsnap(overkilltd);
+        tdgif = loadsnap(takedowngif);
 
 
         int j = 0;
